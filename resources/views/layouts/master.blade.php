@@ -7,6 +7,7 @@
     <title>Laravel 5 Essential</title>
 
     <link rel="stylesheet" href="{{ elixir('css/app.css') }}">
+
     @yield('style')
 </head>
 <body>
