@@ -3,34 +3,10 @@
 @section('style')
   @parent
   <style>
-    .swiper-container {
-        width: auto;
-        height: 300px;
-        margin: 20px auto;
-    }
-    .swiper-slide {
-        text-align: center;
-        font-size: 18px;
-        background: #fff;
-        /* Center slide text vertically */
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        -webkit-justify-content: center;
-        justify-content: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        -webkit-align-items: center;
-        align-items: center;
-    }
   </style>
 @stop
 
 @section('content')
-    
     <div class="section-preview">
       <div class="container">
         <div class="row">
@@ -38,7 +14,23 @@
             <div class="preview">
               <div class="image">
                 {{-- <div class="panel-overlay-top-right"><img src="build/img/lang/ko.png"/></span></div> --}}
-                <a href="cerulean/"><img src="build/img/cu1.jpg" class="img-responsive" alt="Cerulean"></a>
+                
+                <!-- Swiper -->
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><img src="build/img/cu1.jpg" class="img-responsive" alt="Cerulean"></div>
+                        <div class="swiper-slide"><img src="build/img/cu2.jpg" class="img-responsive" alt="Cerulean"></div>
+                        <div class="swiper-slide"><img src="build/img/cu3.jpg" class="img-responsive" alt="Cerulean"></div>
+                    </div>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination"></div>
+                    <!-- Add Arrows -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    
+                </div>
+                
+                
                 <div class="panel-overlay-bottom-right panel-overlay-label ">¥&nbsp;500</span></div>
                 <div class="panel-overlay-bottom-left"><img src="build/img/lang/ko.png"/></span></div>
               </div>
@@ -210,6 +202,9 @@
         </div>
         <!-- Add Pagination -->
         <div class="swiper-pagination"></div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
     </div>
     <div class="container">
       <div class="row center">
@@ -235,8 +230,14 @@
     <script>
     var swiper = new Swiper('.swiper-container', {
         pagination: '.swiper-pagination',
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        slidesPerView: 1,
         paginationClickable: true,
         spaceBetween: 30,
+        preloadImages: false,
+        lazyLoading: true,
+        loop: true
     });
     </script>
 @stop
