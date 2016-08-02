@@ -15,6 +15,9 @@ git clone https://github.com/richellin/langtal.com.git
 composer install
 php artisan key:generate
 
+#DB Setting
+php artisan migrate
+
 #Install package.json 
 npm install
 
