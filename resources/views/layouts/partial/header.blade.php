@@ -23,20 +23,31 @@
 
       <ul class="nav navbar-nav navbar-right">
         <li><a href="http://builtwithbootstrap.com/" target="_blank">Cart</a></li>
-        <li><a href="https://wrapbootstrap.com/?ref=bsw" target="_blank">Login</a></li>
+        
+        @if (Auth::guest())
+            <li><a href="{{ url('/login') }}">Login</a></li>
+        @else
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                    {{ Auth::user()->name }} <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                </ul>
+            </li>
+        @endif
       </ul>
-
     </div>
   </div>
 </div>
 
 <div class="splash">
   <div class="container">
-
     <div class="row">
       <div class="col-lg-12">
         <!-- <div><img class="logo" src="assets/img/logo.png"></div> -->
         <h1>Welcome to Langtal</h1>
+        <a class="btn btn-primary" href="{{ url('/register') }}">Register</a>
       </div>
     </div>
   </div>

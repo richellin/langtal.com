@@ -5,7 +5,6 @@
   <style>
   </style>
 @stop
-
 @section('content')
     <div class="section-preview">
       <div class="container">

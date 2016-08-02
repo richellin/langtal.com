@@ -1,8 +1,9 @@
 <?php
-
-if (!function_exists('asd')) {
+if (!function_exists('getArea')) {
     /**
      * get Area
+     *
+     * @param string $text
      *
      * @return array
      */
@@ -12,14 +13,33 @@ if (!function_exists('asd')) {
     }
 }
 
-if (!function_exists('asd')) {
+if (! function_exists('is_api_request')) {
     /**
-     * get asd
+     * Determine if the current request is for HTTP api.
      *
-     * @return array
+     * @return bool
      */
-    function asd()
+    function is_api_request()
     {
-        return [];
+        return starts_with(request()->getHttpHost(), config('project.api_domain'));
+    }
+}
+
+if (! function_exists('cache_key')) {
+    /**
+     * Generate key for caching.
+     *
+     * Note. Even though the request endpoints are the same,
+     *       the response body should be different because of the query string.
+     *
+     * @param $base
+     * @return string
+     */
+    function cache_key($base)
+    {
+        $key = ($uri = request()->fullUrl())
+            ? $base . '.' . urlencode($uri)
+            : $base;
+        return md5($key);
     }
 }
