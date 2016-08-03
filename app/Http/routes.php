@@ -23,6 +23,12 @@ Route::group(['domain' => config('project.app_domain'), 'as' => 'web.', 'middlew
     Route::get('/', function () {
         return view('home');
     });
+    
+    /* Social Login */
+    Route::get('social/{provider}', [
+        'as'   => 'social.login',
+        'uses' => 'SocialController@execute',
+    ]);
 });
 
 

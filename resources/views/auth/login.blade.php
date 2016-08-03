@@ -9,7 +9,13 @@
             <div class="panel-body">
                 <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                     {{ csrf_field() }}
-
+                    
+                    <div class="form-group">
+                      <a class="btn btn-default btn-block" href="{{ url('/social/github') }}">
+                        <strong><i class="fa fa-github icon"></i> Login with Github</strong>
+                      </a>
+                    </div>
+                    
                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                         <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
