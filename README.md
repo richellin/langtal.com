@@ -21,6 +21,8 @@ php artisan migrate
 #Install package.json 
 npm install
 
+bower install
+
 #Elixir Running Task
 npm run prod
 
