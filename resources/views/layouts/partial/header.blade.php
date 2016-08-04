@@ -46,7 +46,7 @@
     <div class="row">
       <div class="col-lg-12">
         <!-- <div><img class="logo" src="assets/img/logo.png"></div> -->
-        <h1>Welcome to Langtal</h1>
+        <h1>{{ trans('messages.welcome') }}</h1>
         <a class="btn btn-primary" href="{{ url('/register') }}">Register</a>
       </div>
     </div>

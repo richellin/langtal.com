@@ -19,12 +19,21 @@ Route::group(['domain' => config('project.app_domain'), 'as' => 'web.', 'middlew
         'uses' => 'PasswordsController@postReset',
     ]);
     */
+    //Top page
     Route::auth();
-    Route::get('/', function () {
-        return view('home');
-    });
+    Route::get('/', [
+        'as'   => 'home.index',
+        'uses' => 'HomeController@index',
+    ]);
     
-    /* Social Login */
+    //Change language
+    Route::get('locale', [
+        'as'   => 'home.locale',
+        'uses' => 'HomeController@locale',
+    ]);
+    
+    
+    //Social Login
     Route::get('social/{provider}', [
         'as'   => 'social.login',
         'uses' => 'SocialController@execute',

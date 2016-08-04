@@ -18,7 +18,7 @@ class SocialController extends Controller
     {
         $this->middleware('guest', ['only' => 'execute']);
         $this->socialite = $socialite;
-        //parent::__construct();
+        parent::__construct();
     }
     /**
      * Handle social login process.
