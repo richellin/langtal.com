@@ -32,7 +32,6 @@ Route::group(['domain' => config('project.app_domain'), 'as' => 'web.', 'middlew
         'uses' => 'HomeController@locale',
     ]);
     
-    
     //Social Login
     Route::get('social/{provider}', [
         'as'   => 'social.login',
@@ -42,14 +41,14 @@ Route::group(['domain' => config('project.app_domain'), 'as' => 'web.', 'middlew
 
 
 
-Route::group(['domain' => config('project.api_domain'), 'as' => 'api.', 'middleware' => 'cors'], function() {
+Route::group(['domain' => config('project.api_domain'), 'as' => 'api.', 'namespace' => 'Api' , 'middleware' => 'cors'], function() {
 
     //Route::resource('photo', 'PhotoController');
 
-    Route::group(['prefix' => 'v1'], function() {
-        Route::get('/', function () {
-            return 'v1 입니당';
-        });
+    Route::group(['prefix' => 'v1', 'namespace' => 'V1'], function() {
+        
+         Route::resource('users', 'UsersController', ['only' => ['index']]);
+        
         
         //Route::resource('photo', 'PhotoController', ['except' => ['create', 'edit']]);
         
@@ -66,9 +65,11 @@ Route::group(['domain' => config('project.api_domain'), 'as' => 'api.', 'middlew
             'uses' => 'SessionController@refresh'
         ]);
     });
+    /*
     Route::group(['prefix' => 'v2'], function() {
         Route::get('/', function () {
             return 'v2 입니당';
         });
     });
+    */
 });
