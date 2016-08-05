@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Validator;
 
+use App\Events\UserWasRegistered;
 class AuthController extends Controller
 {
     /*
@@ -66,10 +67,16 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+        
+        event(new UserWasRegistered($user));
+        $user->last_login = (new \DateTime)->format('Y-m-d H:i:s');
+        $user->save();
+        
+        return $user;
     }
 }

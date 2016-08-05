@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Contracts\Factory as Socialite;
+use App\Events\UserWasRegistered;
 class SocialController extends Controller
 {
     /**
@@ -52,15 +53,24 @@ class SocialController extends Controller
      */
     protected function handleProviderCallback($provider)
     {
-        $user = $this->socialite->driver($provider)->user();
-        $user = (User::whereEmail($user->getEmail())->first())
-            ?: User::create([
-                'name'  => $user->getName() ?: 'unknown',
-                'email' => $user->getEmail(),
+        $social_user = $this->socialite->driver($provider)->user();
+        $email = $social_user->getEmail();
+        $user = User::whereEmail($social_user->getEmail())->first();
+        
+        if($user == null) {
+            $user = User::create([
+                'name'  => $social_user->getName() ?: 'unknown',
+                'email' => $social_user->getEmail(),
             ]);
+            event(new UserWasRegistered($user));
+            //event(new UserWasRegistered($user));
+        }
+        
         \Auth::login($user, true);
-        //event('users.login', [$user]);
-        //flash(trans('auth.welcome', ['name' => $user->name]));
+        
+        $user->last_login = (new \DateTime)->format('Y-m-d H:i:s');
+        $user->save();
+        
         return redirect(url('/'));
     }
 }
