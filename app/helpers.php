@@ -43,3 +43,15 @@ if (! function_exists('cache_key')) {
         return md5($key);
     }
 }
+
+if (! function_exists('attachment_path')) {
+    /**
+     * @param string $path
+     *
+     * @return string
+     */
+    function attachment_path($path = '')
+    {
+        return public_path($path ? 'attachments'.DIRECTORY_SEPARATOR.$path : 'attachments');
+    }
+}

@@ -21,11 +21,12 @@ elixir(function(mix) {
 	'../vendor/Swiper/dist/css/swiper.min.css',
         'custom.css',
     ], 'public/css/app.css')
+    .browserify('app.js')
     .scripts([
       '../vendor/jquery/dist/jquery.js',
       '../vendor/bootstrap-sass/assets/javascripts/bootstrap.js',
       '../vendor/Swiper/dist/js/swiper.jquery.min.js',
-      'app.js'
+      './public/js/app.js'
     ], 'public/js/app.js')
     .version([
       'css/app.css',

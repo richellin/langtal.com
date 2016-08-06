@@ -222,6 +222,47 @@
         </div>
       </div>
     </div>
+    
+    
+    <!-- main body of our application -->
+    <div class="container">
+        <users></users>
+    </div>
+    <template id="users-template">
+        <div class="container" id="users">
+            <!-- add an user form -->
+            <div class="col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3>Add an User</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <input class="form-control" placeholder="User Name" v-model="user.name">
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="User Description" v-model="user.last_login"></textarea>
+                        </div>
+                        <button class="btn btn-primary" v-on:click="addUser">Submit</button>
+                    </div>
+                </div>
+            </div>
+            <!-- show the users -->
+            <div class="col-sm-6">
+                <div class="list-group">
+                    <a href="#" class="list-group-item" v-for="user in users">
+                        <h4 class="list-group-item-heading">
+                     <i class="glyphicon glyphicon-bullhorn"></i> 
+                      @{{ user.name }}
+                        </h4>
+                        
+                        <p class="list-group-item-text" v-if="user.name">@{{ user.name }}</p>
+                        <button class="btn btn-xs btn-danger" v-on:click="deleteUser($index)">Delete</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </template>
 @stop
 @section('script')
     @parent
