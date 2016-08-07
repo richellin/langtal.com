@@ -1,3 +1,4 @@
+/*
 import Vue from 'vue'
 import VueResource from 'vue-resource'
 Vue.use(VueResource)
@@ -57,6 +58,7 @@ new Vue({
     // We want to target the div with an id of 'users'
     el: 'body',
 });
+*/
 
 (function(){
   $(window).scroll(function () {

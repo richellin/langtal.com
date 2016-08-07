@@ -14,7 +14,9 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-     
+    private $PAGE = 0;
+    private $TAKE = 20;
+    
     public function __construct()
     {
         //$this->middleware('jwt.auth');
@@ -23,9 +25,11 @@ class UsersController extends Controller
     }
 
     
-    public function index()
+    public function index(Request $request)
     {
-        return \App\User::all();
+        $page = $request->input('page', $this->PAGE);
+        $skip = $page===0? 0 : $page*$this->TAKE;
+        return \App\User::skip($skip)->take($this->TAKE)->get();
     }
 
     /**
