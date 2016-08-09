@@ -156,9 +156,9 @@
                                       '</a>'+
             
                                       '<ul class="dropdown-menu">'+
-                                        '<li><a target="_blank" href="cerulean/bootstrap.min.css">Info</a></li>'+
+                                        '<li><a target="_blank" href="/users/show/'+val.id+'">Info</a></li>'+
                                         '<li class="divider"></li>'+
-                                        '<li><a target="_blank" href="cerulean/bootstrap.min.css">Favorite</a></li>'+
+                                        '<li><a target="_blank" href="/users/show/'+val.id+'">Favorite</a></li>'+
                                       '</ul>'+
                                     '</div>'+
                                 '</div>'+

@@ -1,7 +1,7 @@
 <div class="navbar navbar-default navbar-fixed-top navbar-transparent">
   <div class="container">
     <div class="navbar-header">
-      <a href="../" class="navbar-brand"><img src="/build/img/logo-nav.png">Langtal</a>
+      <a href="/" class="navbar-brand"><img src="/build/img/logo-nav.png">Langtal</a>
       <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -11,13 +11,13 @@
     <div class="navbar-collapse collapse" id="navbar-main">
       <ul class="nav navbar-nav">
         <li>
-          <a href="../">Home</a>
+          <a href="/">Home</a>
         </li>
         <li>
-          <a href="../">About</a>
+          <a href="/">About</a>
         </li>
         <li>
-          <a href="../">Contact</a>
+          <a href="/">Contact</a>
         </li>
       </ul>
 

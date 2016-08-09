@@ -37,6 +37,11 @@ Route::group(['domain' => config('project.app_domain'), 'as' => 'web.', 'middlew
         'as'   => 'social.login',
         'uses' => 'SocialController@execute',
     ]);
+    
+    Route::get('users/show/{id}','UsersController@show');
+    Route::get('users/edit/{id}','UsersController@edit');
+    Route::post('users/update/{id}','UsersController@update');
+    Route::post('users/destroy/{id}','UsersController@destroy');
 });
 
 
