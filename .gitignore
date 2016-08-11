@@ -22,5 +22,6 @@ Homestead.json
 /resources/assets/css
 /public/css
 /public/js
+/public/img
 /public/build/
 /public/storage

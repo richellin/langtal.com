@@ -75,19 +75,8 @@
 @stop
 @section('script')
     @parent
-    <!-- Initialize Swiper -->
+    
     <script>
-    var swiper = new Swiper('.swiper-container', {
-        pagination: '.swiper-pagination',
-        nextButton: '.swiper-button-next',
-        prevButton: '.swiper-button-prev',
-        slidesPerView: 1,
-        paginationClickable: true,
-        spaceBetween: 30,
-        preloadImages: false,
-        lazyLoading: true,
-        loop: true
-    });
     
     var count = 0;
     var paging = true;
@@ -122,10 +111,26 @@
                         '<div class="preview">'+
                           '<div class="image">'+
                             '<div class="swiper-container">'+
-                                '<div class="swiper-wrapper">'+
-                                    '<div class="swiper-slide"><img src="build/img/cu1.jpg" class="img-responsive" alt="Cerulean"></div>'+
-                                    '<div class="swiper-slide"><img src="build/img/cu2.jpg" class="img-responsive" alt="Cerulean"></div>'+
-                                    '<div class="swiper-slide"><img src="build/img/cu3.jpg" class="img-responsive" alt="Cerulean"></div>'+
+                                '<div class="swiper-wrapper">';
+                        img_html = '';
+                        for(var i=1; i<=3; i++) {
+                            img = 'img'+i;
+                            img_html+= '<div class="swiper-slide">';
+                            if(val[img] !== ''){
+                                img_html+= 
+                                '<a href="/img/'+ val.id + '/b_' + val[img] + '" data-lightbox="' + val.id +'" data-title="' + img + '">'+
+                                    '<img src="/img/'+ val.id + '/m_' + val[img] +'" class="img-responsive">'+
+                                '</a>';
+                            } else {
+                                img_html+= 
+                                '<a href="/build/img/b_no_img.jpg" data-lightbox="' + val.id +'" data-title="' + val[img] + '">'+
+                                    '<img src="/build/img/b_no_img.jpg" class="img-responsive">'+
+                                '</a>';
+                            }
+                            img_html+= '</div>';
+                        }
+                        html+=img_html;
+                        html+=
                                 '</div>'+
                                 '<div class="swiper-pagination"></div>'+
                                 '<div class="swiper-button-next"></div>'+
@@ -180,6 +185,11 @@
                         lazyLoading: true,
                         loop: true
                     });
+                    
+                    lightbox.option({
+                      'wrapAround': true,
+                      'showImageNumberLabel': false
+                    })
                 }
               },
               error:function(data){

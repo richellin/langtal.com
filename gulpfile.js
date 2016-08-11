@@ -18,7 +18,8 @@ elixir(function(mix) {
     ], './public/css/app.css')
     .styles([
         './public/css/app.css',
-	'../vendor/Swiper/dist/css/swiper.min.css',
+		'../vendor/Swiper/dist/css/swiper.min.css',
+		'../vendor/lightbox2/dist/css/lightbox.min.css',
         'custom.css',
     ], 'public/css/app.css')
     .browserify('app.js')
@@ -26,6 +27,7 @@ elixir(function(mix) {
       '../vendor/jquery/dist/jquery.js',
       '../vendor/bootstrap-sass/assets/javascripts/bootstrap.js',
       '../vendor/Swiper/dist/js/swiper.jquery.min.js',
+      '../vendor/lightbox2/dist/js/lightbox.min.js',
       './public/js/app.js'
     ], 'public/js/app.js')
     .version([
