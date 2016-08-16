@@ -13,11 +13,27 @@
             <a href="/users" class="btn btn-primary" style="margin:20px;">一覧に戻る</a>
         </div>
     </div>
+    
+    {{-- エラーの表示を追加 --}}
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    
     <!-- form -->
     {{ Form::open(['url' => '/users/update/'.$user->id, 'method' => 'post', 'files' => true]) }}
         <div class="form-group @if(!empty($errors->first('name'))) has-error @endif">
             {{ Form::label('name', 'Name') }}
-            {{ Form::input('text', 'name', $user->name, ['required', 'class' => 'form-control']) }}
+            @if(!empty($errors->first('name')))
+                {{ Form::input('text', 'name', old( 'name' ), ['required', 'class' => 'form-control']) }}
+            @else
+                {{ Form::input('text', 'name', $user->name, ['required', 'class' => 'form-control']) }}
+            @endif
             <span class="help-block">{{$errors->first('name')}}</span>
         </div>
         <div class="form-group @if(!empty($errors->first('email'))) has-error @endif">

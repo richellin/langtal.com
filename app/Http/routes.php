@@ -12,7 +12,8 @@
 */
 
 
-Route::group(['domain' => config('project.app_domain'), 'as' => 'web.', 'middleware' => 'web'], function() {
+//5.2 web미들웨어는 기본적으로 적용 되기 때문에, 오히려 줘버리면 $error가 안받아와 지므로 미들웨어 지정하지 말것!
+Route::group(['domain' => config('project.app_domain'), 'as' => 'web.'], function() {
     /*
     Route::get('/', [
         'as'   => 'reset.store',
