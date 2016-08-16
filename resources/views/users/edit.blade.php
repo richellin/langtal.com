@@ -27,6 +27,14 @@
     
     <!-- form -->
     {{ Form::open(['url' => '/users/update/'.$user->id, 'method' => 'post', 'files' => true]) }}
+        <div class="form-group @if(!empty($errors->first('email'))) has-error @endif">
+            {{ Form::label('email', 'E-Mail') }}
+            {{ $user->email }}
+            {{ Form::hidden('email', $user->email) }}
+            {{-- Form::input('text', 'email', $user->email, ['required', 'class' => 'form-control']) --}}
+            {{-- <input type="text" name="email" value="{{ $user->email }}" class="form-control"> --}}
+            <span class="help-block">{{$errors->first('email')}}</span>
+        </div>
         <div class="form-group @if(!empty($errors->first('name'))) has-error @endif">
             {{ Form::label('name', 'Name') }}
             @if(!empty($errors->first('name')))
@@ -36,13 +44,24 @@
             @endif
             <span class="help-block">{{$errors->first('name')}}</span>
         </div>
-        <div class="form-group @if(!empty($errors->first('email'))) has-error @endif">
-            {{ Form::label('email', 'E-Mail') }}
-            {{ $user->email }}
-            {{ Form::hidden('email', $user->email) }}
-            {{-- Form::input('text', 'email', $user->email, ['required', 'class' => 'form-control']) --}}
-            {{-- <input type="text" name="email" value="{{ $user->email }}" class="form-control"> --}}
-            <span class="help-block">{{$errors->first('email')}}</span>
+        <div class="form-group @if(!empty($errors->first('nation'))) has-error @endif">
+            <label>Nation</label>
+            @foreach ($items['nations'] as $key => $val)
+                <label>
+                  <input type="radio" name="nation" value="{{ $val }}" @if($val === $user->nation) checked @endif />
+                  <img src="/build/img/lang/{{ $key }}.png" class="img-responsive">
+                </label>
+            @endforeach
+            <span class="help-block">{{$errors->first('nation')}}</span>
+        </div>
+        <div class="form-group @if(!empty($errors->first('explain'))) has-error @endif">
+            {{ Form::label('explain', 'Explain') }}
+            @if(!empty($errors->first('explain')))
+                {{ Form::textarea('explain', old( 'explain' ), ['required', 'class' => 'form-control']) }}
+            @else
+                {{ Form::textarea('explain', $user->explain, ['required', 'class' => 'form-control']) }}
+            @endif
+            <span class="help-block">{{$errors->first('explain')}}</span>
         </div>
         @for ($i = 1; $i <= 3; $i++)
             {{--*/ $img = "img{$i}"; /*--}}

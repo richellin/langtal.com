@@ -14,11 +14,15 @@ use File;
 class UsersController extends Controller
 {
     private $user_id;
+    private $items;
     
     public function __construct()
     {
         parent::__construct();
         $this->user_id = session()->get('user_id', 0);;
+        
+        $this->items['nations'] = getNations();
+        $this->items['langs'] = getLangs();
     }
     
     public function show($id)
@@ -27,7 +31,11 @@ class UsersController extends Controller
         if($user === null) {
             return redirect()->to("/");
         }
-        return view('users.show')->with(compact('user'));
+        
+        return view('users.show')->with([
+            'user' => $user,
+            'items' => $this->items,
+        ]);
     }
     public function edit(Request $request, $id)
     {
@@ -35,7 +43,11 @@ class UsersController extends Controller
             return redirect()->to("/");
         }
         $user = User::find($id);
-        return view('users.edit')->with(compact('user'));
+        
+        return view('users.edit')->with([
+            'user' => $user,
+            'items' => $this->items,
+        ]);
     }
     
     public function update(Request $request, $id)
@@ -54,6 +66,8 @@ class UsersController extends Controller
             'name'=>'required',
             //'email'=>'required|email|unique:users',
             'email'=>'required|email',
+            'nation'=>'required',
+            'explain'=>'required|max:1000',
         ];
         
         $messages = [
@@ -61,6 +75,9 @@ class UsersController extends Controller
             'email.required'=>'emailは必須です。',
             'email.email'=>'emailの形式で入力して下さい。',
             //'email.unique'=>'このemailは既に登録されています。',
+            'nation.required'=>'名前は必須です。',
+            'explain.required'=>'名前は必須です。',
+            'explain.max'=>'1,000まで入力して下さい。',
         ];
         
         for ($i=1; $i <= 3; $i++) { 
@@ -109,6 +126,8 @@ class UsersController extends Controller
         
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->nation = $request->nation;
+        $user->explain = $request->explain;
         
         foreach ($imgs as $img_name => $img_obj) {
             $img_update = "{$img_name}_updated_at";
