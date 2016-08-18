@@ -70,7 +70,6 @@ class SocialController extends Controller
         
         $user->last_login = (new \DateTime)->format('Y-m-d H:i:s');
         $user->save();
-        session(['user_id' => $user->id]);
         return redirect(url('/'));
     }
 }

@@ -8,6 +8,8 @@ use App\Http\Requests;
 
 use App\User as User;
 
+use \Auth as Auth;
+
 use Intervention\Image\ImageManagerStatic as Image;
 use File;
 
@@ -19,8 +21,7 @@ class UsersController extends Controller
     public function __construct()
     {
         parent::__construct();
-        $this->user_id = session()->get('user_id', 0);;
-        
+        $this->user_id = Auth::user()->id;
         $this->items['nations'] = getNations();
         $this->items['langs'] = getLangs();
     }
