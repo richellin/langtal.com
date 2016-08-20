@@ -48,7 +48,7 @@
             <label>Nation</label>
             @foreach ($items['nations'] as $key => $val)
                 <label>
-                  <input type="radio" name="nation" value="{{ $val }}" @if($val === $user->nation) checked @endif />
+                  <input type="radio" name="nation" value="{{ $key }}" @if($key === $user->nation) checked @endif />
                   <img src="/build/img/lang/{{ $key }}.png" class="img-responsive">
                 </label>
             @endforeach

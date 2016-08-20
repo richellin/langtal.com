@@ -139,12 +139,19 @@
                             '</div>'+
                             
                             
-                            '<div class="panel-overlay-bottom-right panel-overlay-label ">¥&nbsp;500</span></div>'+
-                            '<div class="panel-overlay-bottom-left"><img src="build/img/lang/ko.png"/></span></div>'+
-                          '</div>'+
+                            '<div class="panel-overlay-bottom-right panel-overlay-label ">¥&nbsp;500</span></div>';
+                            if(val.nation !== ''){
+                        html+= 
+                            '<div class="panel-overlay-bottom-left"><img src="build/img/lang/' + val.nation + '.png"/></span></div>';
+                            }else{
+                        html+= 
+                            '<div class="panel-overlay-bottom-left"><img src="build/img/lang/no.png"/></span></div>';
+                            }
+                        html+= 
+                        '</div>'+
                           '<div class="options">'+
                               '<h4>'+val.name+'</h4>'+
-                              '<h5>'+val.name+'</h5>'+
+                              '<h5>'+val.explain+'</h5>'+
                             
                               '<div class="row">'+
                                 '<div class="col-xs-8 col-sm-8 left">'+

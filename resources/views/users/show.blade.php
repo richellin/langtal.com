@@ -52,11 +52,15 @@
                     
                     
                     <div class="panel-overlay-bottom-right panel-overlay-label ">¥&nbsp;500</span></div>
-                    <div class="panel-overlay-bottom-left"><img src="/build/img/lang/ko.png"/></span></div>
+                    @if ($user->nation !== '')
+                        <div class="panel-overlay-bottom-left"><img src="/build/img/lang/{{ $user->nation }}.png"/></span></div>
+                    @else
+                        <div class="panel-overlay-bottom-left"><img src="/build/img/lang/ko.png"/></span></div>
+                    @endif
                   </div>
                   <div class="options">
-                      <h4>{{$user->name}}</h4>
-                      <h5>{{$user->name}}</h5>
+                      <h4>{{ $user->name }}</h4>
+                      <h5>{{ $user->explain }}</h5>
                     
                       <div class="row">
                         <div class="col-xs-8 col-sm-8 left">
